@@ -63,7 +63,11 @@ void paySuccess(PaymentSuccessResponse response){
             controller: controller,
             keyboardType: TextInputType.number,
           ),
+<<<<<<< HEAD
           RaisedButton(
+=======
+          ElevatedButton(
+>>>>>>> fb1b702 (First Commit.)
             child: Text('pay'),
             onPressed: ()=>getPayment(),
           ),
