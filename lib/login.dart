@@ -1,6 +1,15 @@
 import 'package:flutter/material.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
+  @override
+  _LoginPageState createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+
+  var email;
+  final emailController= new TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,17 +53,41 @@ class LoginPage extends StatelessWidget {
                     Text(
                       "Login to your account",
                       style: TextStyle(fontSize: 15, color: Colors.blue[800]),
-                    )
+                    ),
+                    SizedBox(
+                      height: 50,
+                    ),
+                    Text('Welcome $email',style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,),),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    TextField(
+                      controller: emailController,
+                      decoration: InputDecoration(
+                          prefixIcon: Icon(Icons.person),
+                          hintText: 'Email',
+                          contentPadding: EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.grey[400]),
+                          ),
+                          border: OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.grey[400]))),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    TextField(
+                      decoration: InputDecoration(
+                          prefixIcon: Icon(Icons.person),
+                          hintText: 'Password',
+                          contentPadding: EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.grey[400]),
+                          ),
+                          border: OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.grey[400]))),
+                    ),
                   ],
-                ),
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 40),
-                  child: Column(
-                    children: <Widget>[
-                      inputFile(label: "Email"),
-                      inputFile(label: "Password", obscureText: true)
-                    ],
-                  ),
                 ),
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 40),
@@ -72,7 +105,11 @@ class LoginPage extends StatelessWidget {
                     child: MaterialButton(
                       minWidth: double.infinity,
                       height: 60,
-                      onPressed: () {},
+                      onPressed: () {
+                        setState(() {
+                          email=emailController.text;
+                        });
+                      },
                       color: Color(0xff0095FF),
                       elevation: 0,
                       shape: RoundedRectangleBorder(
@@ -105,34 +142,4 @@ class LoginPage extends StatelessWidget {
       ),
     );
   }
-}
-
-// we will be creating a widget for text field
-Widget inputFile({label, obscureText = false}) {
-  return Column(
-    crossAxisAlignment: CrossAxisAlignment.start,
-    children: <Widget>[
-      Text(
-        label,
-        style: TextStyle(
-            fontSize: 15, fontWeight: FontWeight.w400, color: Colors.black87),
-      ),
-      SizedBox(
-        height: 5,
-      ),
-      TextField(
-        obscureText: obscureText,
-        decoration: InputDecoration(
-            contentPadding: EdgeInsets.symmetric(vertical: 0, horizontal: 10),
-            enabledBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.grey[400]),
-            ),
-            border: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.grey[400]))),
-      ),
-      SizedBox(
-        height: 10,
-      )
-    ],
-  );
 }

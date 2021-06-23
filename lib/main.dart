@@ -8,19 +8,33 @@ import 'package:minor_project/payments.dart';
 import 'package:minor_project/signup.dart';
 
 void main() {
-  runApp(MaterialApp(
-    debugShowCheckedModeBanner: false,
-    home: HomePage(),
-  ));
+  runApp(MyApp());
+}
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: HomePage(),
+    );
+  }
 }
 
-class HomePage extends StatelessWidget {
+
+
+class HomePage extends StatefulWidget {
+  @override
+  _HomePageState createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: Drawer(
         child: Column(
-          children: [
+          children: <Widget>[
             Container(
               child: Padding(
                 padding: const EdgeInsets.only(top: 25),
@@ -91,7 +105,6 @@ class HomePage extends StatelessWidget {
                         SystemNavigator.pop();
                         // exit(0);
                       }, child: Text('Yes,LogOut'),),
-
                     ],
                   );
                 });
@@ -99,7 +112,6 @@ class HomePage extends StatelessWidget {
             ),
           ],
         ),
-
       ),
       appBar: AppBar(
         title: Text('Minor Project'),
